@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project Title</title>
+<meta charset="utf-8">
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+<style> @-ms-viewport { width: device-width; } </style>
+<link rel="stylesheet" href="vendor/reset.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="room4.css">
+
+
+</head>
+<body class="multiple-scenes ">
+
+<div id="pano"></div>
+ 
+<!-- ===== CUSTOM UI LAYER (OURS) ===== -->
+
+ <!-- for room 4 only -->
+<div id="plot-tooltip" style="display:none; position:fixed; background:rgba(0,0,0,0.8); color:white; padding:10px; border-radius:5px; pointer-events:none; z-index:9999; font-family:sans-serif;"></div>
+
+
+<!-- for room 4 only -->
+
+<div id="uiRoot" class="ui-layer hidden-ui">
+
+  <!-- Logo -->
+  <div id="uiLogo">
+    <img src="assets/img/logo.png" alt="Nexora">
+  </div>
+
+  <!-- Scene change button -->
+  <button id="uiSceneNext" class="ui-button">
+  Next Realm
+</button>
+
+ <!-- VR Button -->
+  <button id="uiVR" class="ui-button">
+    <i class="fas fa-vr-cardboard"></i>
+  </button>
+
+  <!-- Mute / Unmute Button -->
+  <button id="uiMute" class="ui-button">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
+</div>
+
+<!-- Audio Permission Modal -->
+<div id="audioModal" class="audio-modal hidden">
+  <div class="audio-box">
+    <h2>Enable Sound Experience</h2>
+    <p>For a more immersive luxury walkthrough</p>
+    <div class="audio-actions">
+      <button id="audioYes">Yes, Enable</button>
+      <button id="audioNo">No, Thanks</button>
+    </div>
+  </div>
+</div>
+
+<!-- Audio Element -->
+<audio id="sceneAudio" preload="auto"></audio>
+
+<!-- MENU TOGGLE BUTTON -->
+<button id="menuToggle" aria-label="Open menu">☰</button>
+
+<div id="menuOverlay"></div>
+
+<!-- SIDE MENU -->
+<aside id="sideMenu" aria-hidden="true">
+
+  <!-- MENU LOGO -->
+  <div id="logoInMenu" class="menu-logo-circle">
+    <img src="assets/img/logo.png" alt="Menu logo">
+  </div>
+  <!-- NAVIGATION -->
+ <nav id="menuList">
+  <ul>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="assets/docs/web-demo.pdf">Plotting Site</a></li>
+    <li><a href="assets/docs/web-demo.pdf" target="_blank">Patta Mutation</a></li>
+    <li><a href="assets/docs/web-demo.pdf" target="_blank">EC Certificate</a></li>
+    <li><a href="assets/docs/web-demo.pdf" target="_blank">Documents</a></li>
+    <li><a href="assets/docs/web-demo.pdf" target="_blank">Patta Mutation</a></li>
+    <li><a href="assets/docs/web-demo.pdf" target="_blank">EC Certificate</a></li>
+    <li><a href="assets/docs/web-demo.pdf" target="_blank">Documents</a></li>
+  </ul>
+</nav>
+
+
+  <!-- CONTACT ICONS -->
+  <div id="menuIcons">
+  <a href="https://wa.me/919399520328" target="_blank" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.facebook.com/profile.php?id=61576601615005" target="_blank" title="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="tel:+919399520328" title="Call">
+    <i class="fas fa-phone"></i>
+  </a>
+  <a href="https://www.google.com/maps" target="_blank" title="Map">
+    <i class="fas fa-map-marker-alt"></i>
+  </a>
+</div>
+
+
+  <!-- FOOTER -->
+  <div id="menuFooter">
+    <a id="creatorLink" href="https://nexora0139.netlify.app/" target="_blank">
+      Created by Nexora
+    </a>
+  </div>
+
+</aside>
+
+
+<!-- ===== END CUSTOM UI ===== -->
+
+
+<div id="sceneList">
+  <ul class="scenes">
+    
+      <a href="javascript:void(0)" class="scene" data-id="0-room1">
+        <li class="text">room1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="1-room2">
+        <li class="text">room2</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="2-room3">
+        <li class="text">room3</li>
+      </a>
+
+      <a href="javascript:void(0)" class="scene" data-id="3-room4">
+        <li class="text">room4</li>
+      </a>
+    
+  </ul>
+</div>
+
+<div id="titleBar">
+  <h1 class="sceneName"></h1>
+</div>
+
+<a href="javascript:void(0)" id="autorotateToggle">
+  <img class="icon off" src="assets/img/play.png">
+  <img class="icon on" src="assets/img/pause.png">
+</a>
+
+<a href="javascript:void(0)" id="fullscreenToggle">
+  <img class="icon off" src="assets/img/fullscreen.png">
+  <img class="icon on" src="assets/img/windowed.png">
+</a>
+
+<a href="javascript:void(0)" id="sceneListToggle">
+  <img class="icon off" src="assets/img/expand.png">
+  <img class="icon on" src="assets/img/collapse.png">
+</a>
+
+<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+  <img class="icon" src="assets/img/up.png">
+</a>
+<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+  <img class="icon" src="assets/img/down.png">
+</a>
+<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+  <img class="icon" src="assets/img/left.png">
+</a>
+<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+  <img class="icon" src="assets/img/right.png">
+</a>
+<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+  <img class="icon" src="assets/img/plus.png">
+</a>
+<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+  <img class="icon" src="assets/img/minus.png">
+</a>
+
+
+
+<script src="vendor/screenfull.min.js" ></script>
+<script src="vendor/bowser.min.js" ></script>
+<script src="vendor/marzipano.js" ></script>
+
+<script src="data.js"></script>
+<script src="index.js"></script>
+<script src="ui.js"></script>
+<script src="room4.js"></script>
+
+
+
+</body>
+</html>

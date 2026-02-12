@@ -1,0 +1,130 @@
+/* Container sizing */
+.hotspot-wrapper {
+    width: 1px;
+    height: 1px;
+    overflow: visible !important;
+}
+
+.svg-plot-container {
+    width: 300px;  /* Adjust base size here */
+    height: 300px;
+    overflow: visible !important;
+    
+    /* Fade-in to stop the jump */
+    opacity: 0;
+    animation: plotFadeIn 0.3s forwards;
+    animation-delay: 0.6s;
+}
+
+@keyframes plotFadeIn { to { opacity: 1; } }
+
+plot-icon {
+    pointer-events: none; /* Crucial: clicks go THROUGH the icon to the plot */
+    opacity: 0.8;
+    image-rendering: pixelated; /* Keeps icons sharp when small */
+}
+
+/* Optional: Pulse effect for amenities */
+.plot-icon {
+    animation: iconPulse 2s infinite ease-in-out;
+}
+
+@keyframes iconPulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* The Shape Styling */
+.plot-path {
+    fill: rgba(0, 255, 100, 0.4); /* Green fill */
+    stroke: white;               /* White border */
+    stroke-width: 4px;           /* Border thickness */
+    stroke-linejoin: round;      /* Smooths the corners */
+    vector-effect: non-scaling-stroke; /* Keeps border thickness consistent */
+    cursor: pointer;
+    transition: fill 0.3s, opacity 0.3s;
+}
+
+
+/* Text inside the plot */
+.plot-text {
+    fill: white;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-anchor: middle;
+    pointer-events: none; /* Allows clicks to go through to the path */
+}
+.plot-101.plot-path {
+    fill: rgba(239, 40, 40, 0.4); /* Red fill for plot 101 */
+}
+.plot-102.plot-path { 
+    fill: rgba(13, 13, 210, 0.4); /* Blue fill for plot 102 */
+}
+
+/* === THE FINAL HOVER RULES === */
+
+/* 1. Standard Plots (Turn White/Bright on hover) */
+.path-saleable:hover {
+    fill: rgba(16, 226, 58, 0.6) !important;
+    cursor: pointer;
+}
+
+/* 2. Amenities (Mosque/Temple - Stay Blue) */
+.path-amenity:hover {
+    fill: rgba(13, 13, 210, 0.7) !important; 
+    cursor: pointer;
+}
+
+/* 3. Sold Plots (Stay Red) */
+.status-sold:hover {
+    fill: rgba(239, 40, 40, 0.6) !important;
+    cursor: pointer;
+}
+
+/* 4. Roads (No Hover, No Click) */
+.path-road {
+    pointer-events: none; 
+}
+
+/* Style specifically for road text */
+.path-road + .plot-text, 
+.svg-plot-container.path-road .plot-text {
+    font-size: 14px !important; /* Smaller text */
+    letter-spacing: 2px;        /* Spaced out letters look more "road-like" */
+    fill: rgba(255, 255, 255, 0.8); 
+    text-transform: uppercase;
+}
+
+/* Specific style for the ground legend */
+.path-legend .plot-path {
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 10px;
+    pointer-events: none; /* User doesn't need to click the legend */
+}
+
+/* This targets the existing tooltip that was jumping around */
+#plot-tooltip {
+    position: fixed; /* Use fixed so it stays relative to the window */
+    background: rgba(0, 0, 0, 0.9) !important;
+    color: #00ff64 !important;
+    padding: 12px !important;
+    border: 1px solid #ffffff !important;
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+    pointer-events: none; /* Makes sure it doesn't block clicks */
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+    z-index: 9999;
+    /* Add a slight transition so it moves smoothly, not jumpy */
+    transition: opacity 0.2s ease; 
+}
+
+/* Make the text inside look professional */
+#plot-tooltip strong {
+    color: white;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #444;
+}
