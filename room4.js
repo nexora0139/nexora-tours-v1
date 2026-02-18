@@ -18,7 +18,7 @@ if (room4Data) {
             status: "sold", // available, sold
             color: "rgba(255, 0, 0, 0.4)", // Red fill for sold plot
             iconX: 50, iconY: 50, iconScale: 1, iconRotate: 0,
-            textX: 100, textY: 110, textRotate: 0, textScale: 1, textSize: 24
+            textX: 35, textY: 40, textRotate: 0, textScale: 0.8, textSize: 24
             
         
          },
@@ -28,7 +28,7 @@ if (room4Data) {
              info: "Area: 1200 sqft | Status: Available | Price: $50k",
             status: "available", // available, sold
             iconX: 50, iconY: 50, iconScale: 1, iconRotate: 0,
-            textX: 100, textY: 110, textRotate: 0, textScale: 1, textSize: 24
+            textX: 30, textY: 60, textRotate: 0, textScale: 1, textSize: 24
             },
 
         { id: "103", yaw: -1.28, pitch: 0.45, r: 10, 
@@ -36,7 +36,7 @@ if (room4Data) {
              info: "Area: 1200 sqft | Status: Available | Price: $50k",
             status: "available", // available, sold
             iconX: 50, iconY: 50, iconScale: 1, iconRotate: 0,
-            textX: 100, textY: 110, textRotate: 0, textScale: 1, textSize: 24
+            textX: 35, textY: 30, textRotate: -6, textScale: 1.1, textSize: 24
             }, 
             
         { id: "104", yaw: -1, pitch: 0.42, r: 0, 
@@ -44,7 +44,7 @@ if (room4Data) {
              info: "Area: 1200 sqft | Status: Available | Price: $50k",
             status: "available", // available, sold
             iconX: 50, iconY: 50, iconScale: 1, iconRotate: 0,
-            textX: 100, textY: 110, textRotate: 0, textScale: 1, textSize: 24
+            textX: 30, textY: 45, textRotate: -8, textScale: 1.1, textSize: 24
             },     
 
         { id: "105", yaw: -0.70, pitch: 0.35, r: -15,
@@ -52,15 +52,15 @@ if (room4Data) {
              info: "Area: 1200 sqft | Status: Available | Price: $50k",
             status: "available", // available, sold
             iconX: 50, iconY: 50, iconScale: 1, iconRotate: 0,
-            textX: 100, textY: 110, textRotate: 0, textScale: 1, textSize: 24
+            textX: 30, textY: 40, textRotate: 0, textScale: 1, textSize: 24
             },
 
         { id: "106", yaw: -0.30, pitch: 0.60, r: -40,  shape: "M -80 -188 L 150 -110 L 210 165 L -60 180 Z",
              color: "rgba(13, 13, 210, 0.4)", // Blue fill for plot 106
              type: "amenity", // saleable, non-saleable
              icon: "assets/img/mosque.png", // Icon for plot 106
-             iconX: 50, iconY: -20, 
-             textX: 50, textY: 10
+             iconX: 15, iconY: -20, iconScale: 3.4, iconRotate: 0, 
+             textX: -50, textY: -145, textRotate: 10, textScale: 1, textSize: 24,
          },
          
 
@@ -76,7 +76,7 @@ if (room4Data) {
                info: "Area: 1200 sqft | Status: Available | Price: $50k",
             status: "available", // available, sold
             iconX: 50, iconY: 50, iconScale: 1, iconRotate: 0,
-            textX: 100, textY: 110, textRotate: 0, textScale: 1, textSize: 24
+            textX: 37, textY: 200, textRotate: -90, textScale: 1, textSize: 24
            
          },
 
@@ -85,7 +85,7 @@ if (room4Data) {
              info: "Area: 1200 sqft | Status: Available | Price: $50k",
             status: "available", // available, sold
             iconX: 50, iconY: 50, iconScale: 1, iconRotate: 0,
-            textX: 100, textY: 110, textRotate: 0, textScale: 1, textSize: 24
+            textX: -3, textY: 170, textRotate: -86, textScale: 1, textSize: 24
         },
 
         { id: "109",  yaw: -1.64, pitch: 0.85, r: 115, 
@@ -93,7 +93,7 @@ if (room4Data) {
              info: "Area: 1200 sqft | Status: Available | Price: $50k",
             status: "available", // available, sold
             iconX: 50, iconY: 50, iconScale: 1, iconRotate: 0,
-            textX: 100, textY: 110, textRotate: 0, textScale: 1, textSize: 24
+            textX: -10, textY: 190, textRotate: -90, textScale: 1, textSize: 24
             }, 
 
         { id: "110", yaw: -1.90, pitch: 0.68, r: 140,
@@ -102,16 +102,18 @@ if (room4Data) {
             status: "sold", // available, sold
             color: "rgba(255, 0, 0, 0.4)", // Red fill for sold plots
             iconX: 50, iconY: 50, iconScale: 1, iconRotate: 0,
-            textX: 100, textY: 110, textRotate: 0, textScale: 1, textSize: 24
+            textX: 65, textY: 210, textRotate: -100, textScale: 1, textSize: 24
             },
 
         { id: "111", yaw: -2.14, pitch: 0.60, r: 135,   shape: "M 12 8 L 183 38 L 148 625 L 36 480 Z",
             type: "amenity", // saleable, non-saleable
             color: "rgba(13, 13, 210, 0.4)", // blue fill for plot 111
-            icon: "assets/img/temple.png" // icon for plot 111
+            icon: "assets/img/temple.png" ,// icon for plot 111
+             iconX: 45, iconY: 260, iconScale: 1.5, iconRotate: -85, 
+             textX: 50, textY: 460, textRotate: -90, textScale: 0.8, textSize: 24,
          },
 
-        { id: "112", yaw: -0.85, pitch: 0.75, r: 79,   shape: "M 14 50 L 200 -43 L 205 190 L 14 246 Z" },
+       // { id: "112", yaw: -0.85, pitch: 0.75, r: 79,   shape: "M 14 50 L 200 -43 L 205 190 L 14 246 Z" },
 
         { id: "213", yaw: -1.64, pitch: 0.55, r: 19, 
               shape: "M -246.5 20 L 1260 -40 L 1670 438 L -312 145 Z",
@@ -284,8 +286,21 @@ plots.forEach(function(p) {
             text.setAttribute("y", "25"); 
             text.style.fontSize = "12px"; 
         } else {
-            text.setAttribute("x", p.textX || 100); 
-            text.setAttribute("y", p.textY || 110);
+            // 2. THE PLOT TEXT FACTORY
+    var text = document.createElementNS(svgNS, "text");
+    
+    var tx = p.textX || 100; 
+    var ty = p.textY || 110;
+    var tr = p.textRotate || 0;  // Get rotation from data
+    var ts = p.textScale || 1;   // Get scale from data
+
+    text.setAttribute("x", tx); 
+    text.setAttribute("y", ty);
+    
+    // THIS IS THE MISSING LINK:
+    // We set the center of rotation to the text's own X and Y
+    text.style.transformOrigin = `${tx}px ${ty}px`;
+    text.style.transform = `rotate(${tr}deg) scale(${ts})`;
         }
         text.setAttribute("class", "plot-text");
         text.textContent = p.labelText ? p.labelText : p.id;
