@@ -128,3 +128,78 @@ plot-icon {
     margin-bottom: 5px;
     border-bottom: 1px solid #444;
 }
+
+/* The Lollipop Shape */
+.path-lollipop {
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 1px;
+    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.3));
+    cursor: pointer;
+}
+
+/* Floating Animation 
+.hotspot-wrapper:has(.path-lollipop) {
+    animation: lollipopFloat 3s ease-in-out infinite;
+    transform-origin: bottom center;
+}*/
+
+@keyframes lollipopFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-15px) scale(1.05); }
+}
+
+/* Text inside the head */
+.hotspot-wrapper:has(.path-lollipop) .plot-text {
+    fill: rgb(248, 248, 12) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.svg-plot-container.path-lollipop {
+    width: 450px !important; /* Forces the width to be large */
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transform: translateZ(0); /* Forces GPU hardware acceleration */
+    backface-visibility: hidden;
+
+    /* Add a thin border to the board */
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+}
+
+.svg-plot-container.path-lollipop svg {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.plot-text {
+    paint-order: stroke fill;
+    stroke: white;
+    stroke-width: 0.5px; /* Just a tiny bit to thicken the letters */
+    font-family: 'Cinzel',serif; /* Use a premium font stack */
+    letter-spacing: 2px;
+    font-weight: 600;
+
+    /* Smooths out the font edges */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Allow the lollipop container to expand based on the SVG content */
+.path-lollipop {
+    width: auto !important; 
+    overflow: visible !important;
+}
+
+/* Ensure the SVG itself doesn't get squashed */
+.path-lollipop svg {
+    width: 100%;
+    height: auto;
+    min-width: 250px; /* Minimum width for short names */
+}

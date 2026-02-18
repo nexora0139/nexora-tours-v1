@@ -62,6 +62,7 @@ if (room4Data) {
              iconX: 50, iconY: -20, 
              textX: 50, textY: 10
          },
+         
 
       // { id: "207", 
          //   yaw: -1.5, pitch: 0.05, r: -10,
@@ -118,107 +119,203 @@ if (room4Data) {
              color: "rgba(128, 128, 128, 0.5)", // gray fill for roads
             labelText: "40 Feet Road", textX: 150, textY: 110, textRotate: 4, textScale: 2, textSize: 54
             },
+        { id: "metro-pin", 
+             type: "lollipop", 
+             yaw: -0.85, pitch: -0.15, r: 0, 
+              labelText: "METRO STATION (1.4 KM)",
+            headShape: "M 10,40 H 240 A 10,10 0 0 0 250,30 V 10 A 10,10 0 0 0 240,0 H 10 A 10,10 0 0 0 0,10 V 30 A 10,10 0 0 0 10,40 Z", 
+            
+            stickShape: "M 120,40 L 125,120 L 130,40 Z",
+            headColor: "rgba(255, 0, 0, 0.8)", 
+            stickColor: "#ffffff",               
+            textX: 125, // W/2
+            vbW: 300,   // W+10
+},
+
+ { id: "Railway-pin", 
+             type: "lollipop", 
+             yaw: 0.155, pitch: -0.15, r: 0, 
+              labelText: "RAILWAY STATION (NIZAMUDDIN) (3.8 KM)",
+            // This shape creates a rounded box (top) and a sharp needle (bottom)
+          headShape: "M 10,40 H 390 A 10,10 0 0 0 400,30 V 10 A 10,10 0 0 0 390,0 H 10 A 10,10 0 0 0 0,10 V 30 A 10,10 0 0 0 10,40 Z", 
+    stickShape: "M 195,40 L 200,120 L 205,40 Z", 
+    headColor: "rgba(255, 0, 0, 0.8)", 
+    stickColor: "#ffffff",
+    textX: 200, // Middle of 500
+    vbW: 410    // Canvas is wide enough to hold 500
+},
+
+   { id: "G(clg)-pin", 
+             type: "lollipop", 
+             yaw: -1.45, pitch: -0.15, r: 0, 
+              labelText: "GIRLS COLLEGE (1.9 KM)",
+            headShape: "M 10,40 H 240 A 10,10 0 0 0 250,30 V 10 A 10,10 0 0 0 240,0 H 10 A 10,10 0 0 0 0,10 V 30 A 10,10 0 0 0 10,40 Z", 
+            
+            stickShape: "M 120,40 L 125,120 L 130,40 Z",
+            headColor: "rgba(255, 0, 0, 0.8)", 
+            stickColor: "#ffffff",               
+            textX: 125, // W/2
+            vbW: 300,   // W+10
+},
+
+   { id: "GU-pin", 
+             type: "lollipop", 
+             yaw: -2.10, pitch: -0.15, r: 0, 
+              labelText: "GALGOTIYAS UNIVERSITY (2.8 KM)",
+            headShape: "M 10,40 H 290 A 10,10 0 0 0 300,30 V 10 A 10,10 0 0 0 290,0 H 10 A 10,10 0 0 0 0,10 V 30 A 10,10 0 0 0 10,40 Z", 
+            
+            stickShape: "M 145,40 L 150,120 L 155,40 Z",
+            headColor: "rgba(255, 0, 0, 0.8)", 
+            stickColor: "#ffffff",               
+            textX: 150, // W/2
+            vbW: 310,   // W+10
+},
+
+   { id: "fuel-pin", 
+             type: "lollipop", 
+             yaw: -2.60, pitch: -0.15, r: 0, 
+              labelText: "PETROLPUMP (1.2 KM)",
+            headShape: "M 10,40 H 240 A 10,10 0 0 0 250,30 V 10 A 10,10 0 0 0 240,0 H 10 A 10,10 0 0 0 0,10 V 30 A 10,10 0 0 0 10,40 Z", 
+            
+            stickShape: "M 120,40 L 125,120 L 130,40 Z",
+            headColor: "rgba(255, 0, 0, 0.8)", 
+            stickColor: "#ffffff",               
+            textX: 125, // W/2
+            vbW: 300,   // W+10
+},
+
+   { id: "market-pin", 
+             type: "lollipop", 
+             yaw: -3.15, pitch: -0.15, r: 0, 
+              labelText: "MAIN MARKET (1.1 KM)",
+            headShape: "M 10,40 H 240 A 10,10 0 0 0 250,30 V 10 A 10,10 0 0 0 240,0 H 10 A 10,10 0 0 0 0,10 V 30 A 10,10 0 0 0 10,40 Z", 
+            
+            stickShape: "M 120,40 L 125,120 L 130,40 Z",
+            headColor: "rgba(255, 0, 0, 0.8)", 
+            stickColor: "#ffffff",               
+            textX: 125, // W/2
+            vbW: 300,   // W+10
+},
     ];
 // === LOGIC AREA: DO NOT TOUCH ===
-    plots.forEach(function(p) {
-        var wrapper = document.createElement('div');
-        wrapper.className = 'hotspot-wrapper';
+  // === LOGIC AREA: FULLY FLEXIBLE VERSION ===
+plots.forEach(function(p) {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'hotspot-wrapper';
 
-        var svgNS = "http://www.w3.org/2000/svg";
-        var svg = document.createElementNS(svgNS, "svg");
-        svg.setAttribute("viewBox", "0 0 200 200");
+    var svgNS = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(svgNS, "svg");
+    
+    // Define specific classes
+    var typeClass = p.type ? "path-" + p.type : "path-saleable";
+    var statusClass = p.status ? "status-" + p.status : "status-available";
+    svg.setAttribute("class", `svg-plot-container ${typeClass} ${statusClass}`);
+
+    // 1. PATH & VIEWBOX LOGIC
+    if (p.type === "lollipop") {
+        // Use individual ViewBox Width from data, default to 200
+        var vbWidth = p.vbW || 200;
+        svg.setAttribute("viewBox", `0 0 ${vbWidth} 200`);
+
+        // Create Stick
+        var stick = document.createElementNS(svgNS, "path");
+        stick.setAttribute("d", p.stickShape); 
+        stick.style.fill = p.stickColor || "#ffffff";
+        svg.appendChild(stick);
+
+        // Create Head
+        var head = document.createElementNS(svgNS, "path");
+        head.setAttribute("d", p.headShape); 
+        head.id = "path-" + p.id;
+        head.setAttribute("class", "plot-path " + typeClass);
+        head.style.fill = p.headColor || "rgba(0, 210, 255, 0.8)";
+        svg.appendChild(head);
         
-        // Define specific classes
-        var typeClass = p.type ? "path-" + p.type : "path-saleable";
-        var statusClass = p.status ? "status-" + p.status : "status-available";
-        svg.setAttribute("class", `svg-plot-container ${typeClass} ${statusClass}`);
+        var path = head; 
+    } else {
+        svg.setAttribute("viewBox", "0 0 200 200");
+        var path = document.createElementNS(svgNS, "path");
+        path.setAttribute("d", p.shape);
+        path.id = "path-" + p.id;
+        path.setAttribute("class", "plot-path " + typeClass + " " + statusClass);
+        if (p.color) path.style.fill = p.color;
+        svg.appendChild(path);
+    }
 
-        // 1. PATH
-      // === REPLACE YOUR PATH SECTION WITH THIS ===
-var path = document.createElementNS(svgNS, "path");
-path.setAttribute("d", p.shape);
-path.id = "path-" + p.id;
+    // 2. ICON
+    if (p.icon) {
+        var img = document.createElementNS(svgNS, "image");
+        var finalPath = p.icon.includes("assets/") ? p.icon : "assets/img/" + p.icon;
+        img.setAttributeNS("http://www.w3.org/1999/xlink", "href", finalPath);
+        var ix = p.iconX || 50; var iy = p.iconY || 50;
+        img.setAttribute("x", ix); img.setAttribute("y", iy);
+        img.setAttribute("width", "100"); img.setAttribute("height", "100");
+        img.style.transformOrigin = (parseInt(ix) + 50) + "px " + (parseInt(iy) + 50) + "px";
+        img.style.transform = `scale(${p.iconScale || 1}) rotate(${p.iconRotate || 0}deg)`;
+        img.setAttribute("class", "plot-icon");
+        svg.appendChild(img);
+    }
 
-// Create the labels based on type (road, amenity, or saleable)
-var typeClass = p.type ? "path-" + p.type : "path-saleable";
-var statusClass = p.status ? "status-" + p.status : "status-available";
+    // 3. TEXT LOGIC
+    if (p.id === "legend") { 
+        var items = [
+            { label: "Available", color: "#00ff64", y: 50 },
+            { label: "Sold",      color: "#ef2828", y: 100 },
+            { label: "Amenities", color: "#0d0dd2", y: 150 }
+        ];
+        items.forEach(function(item) {
+            var dot = document.createElementNS(svgNS, "circle");
+            dot.setAttribute("cx", "40"); dot.setAttribute("cy", item.y - 7);
+            dot.setAttribute("r", "10");  dot.setAttribute("fill", item.color);
+            svg.appendChild(dot);
 
-// SET THE CLASS ONCE (This was the main bug)
-path.setAttribute("class", "plot-path " + typeClass + " " + statusClass);
-
-if (p.color) path.style.fill = p.color;
-svg.appendChild(path);
-        // 2. ICON
-        if (p.icon) {
-            var img = document.createElementNS(svgNS, "image");
-            var finalPath = p.icon.includes("assets/") ? p.icon : "assets/img/" + p.icon;
-            img.setAttributeNS("http://www.w3.org/1999/xlink", "href", finalPath);
-            var ix = p.iconX || 50; var iy = p.iconY || 50;
-            img.setAttribute("x", ix); img.setAttribute("y", iy);
-            img.setAttribute("width", "100"); img.setAttribute("height", "100");
-            img.style.transformOrigin = (parseInt(ix) + 50) + "px " + (parseInt(iy) + 50) + "px";
-            img.style.transform = `scale(${p.iconScale || 1}) rotate(${p.iconRotate || 0}deg)`;
-            img.setAttribute("class", "plot-icon");
-            svg.appendChild(img);
+            var lbl = document.createElementNS(svgNS, "text");
+            lbl.setAttribute("x", "65");  lbl.setAttribute("y", item.y);
+            lbl.setAttribute("fill", "white");
+            lbl.style.fontSize = "22px";
+            lbl.textContent = item.label;
+            svg.appendChild(lbl);
+        });
+    } else {
+        var text = document.createElementNS(svgNS, "text");
+        if (p.type === "lollipop") {
+            // USES DATA textX FOR INDIVIDUAL CENTERING
+            text.setAttribute("x", p.textX || 100);
+            text.setAttribute("y", "25"); 
+            text.style.fontSize = "12px"; 
+        } else {
+            text.setAttribute("x", p.textX || 100); 
+            text.setAttribute("y", p.textY || 110);
         }
+        text.setAttribute("class", "plot-text");
+        text.textContent = p.labelText ? p.labelText : p.id;
+        svg.appendChild(text);
+    }
 
-        // 3. TEXT
-      // === REPLACE YOUR OLD TEXT LOGIC WITH THIS ===
-
-if (p.id === "legend") { 
-    // 1. THE LEGEND FACTORY
-    var items = [
-        { label: "Available", color: "#00ff64", y: 50 },
-        { label: "Sold",      color: "#ef2828", y: 100 },
-        { label: "Amenities", color: "#0d0dd2", y: 150 }
-    ];
-
-    items.forEach(function(item) {
-        // Draw the colored dot
-        var dot = document.createElementNS(svgNS, "circle");
-        dot.setAttribute("cx", "40"); dot.setAttribute("cy", item.y - 7);
-        dot.setAttribute("r", "10");  dot.setAttribute("fill", item.color);
-        svg.appendChild(dot);
-
-        // Draw the text next to the dot
-        var lbl = document.createElementNS(svgNS, "text");
-        lbl.setAttribute("x", "65");  lbl.setAttribute("y", item.y);
-        lbl.setAttribute("fill", "white");
-        lbl.style.fontSize = "22px";
-        lbl.textContent = item.label;
-        svg.appendChild(lbl);
+    // 4. TOOLTIP & WRAPPER
+    var tooltip = document.getElementById('plot-tooltip');
+    path.addEventListener('mouseenter', function(e) {
+        if (p.info) {
+            tooltip.style.display = 'block';
+            tooltip.innerHTML = `<strong>Plot ${p.id}</strong><br>${p.info}`;
+        }
     });
+    path.addEventListener('mousemove', e => {
+        tooltip.style.left = (e.clientX + 15) + 'px';
+        tooltip.style.top = (e.clientY + 15) + 'px';
+    });
+    path.addEventListener('mouseleave', () => tooltip.style.display = 'none');
 
-} else {
-    // 2. THE PLOT NUMBER FACTORY (Your original code)
-    var text = document.createElementNS(svgNS, "text");
-    var tx = p.textX || 100; var ty = p.textY || 110;
-    text.setAttribute("x", tx); text.setAttribute("y", ty);
-    text.setAttribute("class", "plot-text");
-    text.textContent = p.labelText ? p.labelText : p.id;
-    svg.appendChild(text);
-}
-
-        // 4. TOOLTIP LOGIC
-        var tooltip = document.getElementById('plot-tooltip');
-        path.addEventListener('mouseenter', function(e) {
-            if (p.info) {
-                tooltip.style.display = 'block';
-                tooltip.innerHTML = `<strong>Plot ${p.id}</strong><br>${p.info}`;
-            }
-        });
-        path.addEventListener('mousemove', e => {
-            tooltip.style.left = (e.clientX + 15) + 'px';
-            tooltip.style.top = (e.clientY + 15) + 'px';
-        });
-        path.addEventListener('mouseleave', () => tooltip.style.display = 'none');
-
-        wrapper.appendChild(svg);
+    wrapper.appendChild(svg);
+    
+    if (p.type === "lollipop") {
+        svg.style.transform = `rotate(${p.r}deg)`; 
+    } else {
         svg.style.transform = `rotate(${p.r}deg) rotateX(60deg)`;
+    }
 
-        room4Data.scene.hotspotContainer().createHotspot(wrapper, 
-            { yaw: p.yaw, pitch: p.pitch }, 
-            { perspective: { radius: 1000, extraScale: 1 } }
-        );
-    });
-}
+    room4Data.scene.hotspotContainer().createHotspot(wrapper, 
+        { yaw: p.yaw, pitch: p.pitch }, 
+        { perspective: { radius: 1000, extraScale: 1 } }
+    );
+});}
